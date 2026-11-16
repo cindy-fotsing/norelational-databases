@@ -42,7 +42,10 @@ async function main() {
   // ----------------------------------------------------------
   // In mongosh you would write:
   //   db.books.insertOne({ title: "...", publisher: { name: "...", country: "..." } })
-  //
+  await books.insertOne({ 
+    title: "XX", 
+    publisher: { name: "John Doe", 
+    country: "France" } })
   // Do the same here. Insert one book that has a publisher field
   // containing an embedded object with at least a name and a country.
 
@@ -51,18 +54,31 @@ async function main() {
   // ----------------------------------------------------------
   // Insert one book that has a tags field containing
   // an array of at least 3 strings.
-
+  await books.insertOne({ 
+    title: "Be the best", 
+    tags: ['fiction', 'adventure', 'mystery'] })
   // ----------------------------------------------------------
   // TODO 3 - insertMany
   // ----------------------------------------------------------
   // Insert at least 5 books in a single call using insertMany.
   // Include a mix: some with a publisher object, some with tags, some with both.
+  await books.insertMany([
+    { title: "Honey", publisher: { name: "Alice", country: "USA" } },
+    { title: "Love is in the air", tags: ['fiction', 'romance'] },
+    { title: "Kill bob", publisher: { name: "Bob", country: "UK" }, tags: ['mystery', 'thriller'] },
+    { title: "Me, Myself and Me", publisher: { name: "Charlie", country: "Canada" } },
+    { title: "Adventure", tags: ['sci-fi', 'adventure'] }
+  ])
 
   // ----------------------------------------------------------
   // TODO 4 - find all documents
   // ----------------------------------------------------------
   // Retrieve every document in the collection and log each title.
   // Hint: find() returns a cursor - call .toArray() to get an array.
+  const allBooks = await books.find().toArray();
+  allBooks.forEach((book) => {
+    console.log(book.title);
+  });
 
   // ----------------------------------------------------------
   // TODO 5 - findOne with dot notation
