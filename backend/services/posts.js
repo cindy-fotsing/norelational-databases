@@ -1,5 +1,5 @@
 // TODO: uncomment this line once your Post model is ready
-// const Post = require("../models/post");
+const Post = require("../models/post");
 
 // The service layer handles all interaction with the database.
 // Each function receives the data it needs and returns a result.
@@ -45,7 +45,7 @@ async function findAll() {
 // ----------------------------------------------------------
 async function findById(id) {
   // TODO: return Post.findById(id).populate("author", "name email avatar")
-  return null;
+  return Post.findById(id).populate("author", "name email avatar");
 }
 
 // ----------------------------------------------------------
@@ -55,7 +55,7 @@ async function findById(id) {
 async function create(body) {
   // TODO: const post = await Post.create(body)
   // TODO: return post.populate("author", "name email avatar")
-  return null;
+  return post.populate("author", "name email avatar");
 }
 
 // ----------------------------------------------------------
@@ -64,7 +64,7 @@ async function create(body) {
 // ----------------------------------------------------------
 async function update(id, body) {
   // TODO: return Post.findByIdAndUpdate(id, body, { new: true }).populate("author", "name email avatar")
-  return null;
+  return Post.findByIdAndUpdate(id, body, { new: true }).populate("author", "name email avatar");
 }
 
 // ----------------------------------------------------------
@@ -73,7 +73,7 @@ async function update(id, body) {
 // ----------------------------------------------------------
 async function remove(id) {
   // TODO: return Post.findByIdAndDelete(id)
-  return null;
+  return Post.findByIdAndDelete(id);
 }
 
 module.exports = { findAll, findById, create, update, remove };
