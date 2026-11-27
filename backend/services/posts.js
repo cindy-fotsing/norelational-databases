@@ -30,6 +30,7 @@ async function findById(id) {
 async function create(body) {
   // TODO: const post = await Post.create(body)
   // TODO: return post.populate("author", "name email avatar")
+  const post = await Post.create(body)
   return post.populate("author", "name email avatar");
 }
 
