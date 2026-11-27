@@ -11,32 +11,7 @@ const Post = require("../models/post");
 async function findAll() {
   // This is hardcoded example data so the frontend works straight away.
   // TODO: replace with Post.find().populate("author", "name email avatar")
-  return [
-    {
-      _id: "7aef672b31677b579035f4ea",
-      title: "Getting started with MongoDB",
-      content: "MongoDB is a document database that stores data in BSON format.",
-      author: {
-        _id: "6aef672b31677b579035f3ea",
-        name: "Alice",
-        email: "alice@example.com",
-      },
-      tags: ["mongodb", "databases", "nosql"],
-      createdAt: "2024-01-15T00:00:00.000Z",
-    },
-    {
-      _id: "7aef672b31677b579035f4eb",
-      title: "Why Node.js for backend development",
-      content: "Node.js uses an event-driven, non-blocking I/O model.",
-      author: {
-        _id: "6aef672b31677b579035f3eb",
-        name: "Bob",
-        email: "bob@example.com",
-      },
-      tags: ["nodejs", "backend", "javascript"],
-      createdAt: "2024-02-03T00:00:00.000Z",
-    },
-  ];
+  return Post.find().populate("author", "name email avatar");
 }
 
 // ----------------------------------------------------------
